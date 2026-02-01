@@ -9,7 +9,7 @@
     hideShorts: true,
     hideRecommendations: false,
     hideComments: false,
-    hideNotifications: true,
+    hideNotifications: false,
     hideSidebar: false
   };
 

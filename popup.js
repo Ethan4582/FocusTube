@@ -1,111 +1,164 @@
 // popup.js - Handles UI interactions and saves settings to chrome.storage
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Get all toggle elements
-  const toggles = {
-    hideHome: document.getElementById('hideHome'),
-    hideShorts: document.getElementById('hideShorts'),
-    hideRecommendations: document.getElementById('hideRecommendations'),
-    hideComments: document.getElementById('hideComments'),
-    hideNotifications: document.getElementById('hideNotifications'),
-    hideSidebar: document.getElementById('hideSidebar')
-  };
+  console.log('Popup loaded');
+
+  // Get all toggle checkboxes
+  const hideHomeCheckbox = document.getElementById('hideHome');
+  const hideShortsCheckbox = document.getElementById('hideShorts');
+  const hideRecommendationsCheckbox = document.getElementById('hideRecommendations');
+  const hideCommentsCheckbox = document.getElementById('hideComments');
+  const hideNotificationsCheckbox = document.getElementById('hideNotifications');
+  const hideSidebarCheckbox = document.getElementById('hideSidebar');
 
   // Timer elements
   const setTimerBtn = document.getElementById('setTimerBtn');
   const timerOverlay = document.getElementById('timerOverlay');
   const closeTimerBtn = document.getElementById('closeTimerBtn');
   const applyTimerBtn = document.getElementById('applyTimerBtn');
+  const timerHoursInput = document.getElementById('timerHours');
+  const timerMinutesInput = document.getElementById('timerMinutes');
 
-  // Defensive: Only proceed if all elements exist
-  if (Object.values(toggles).some(el => !el) ||
-      !setTimerBtn || !timerOverlay || !closeTimerBtn || !applyTimerBtn) {
-    console.error('Popup: One or more elements not found in DOM.');
-    return;
-  }
+  // Check if elements exist
+  if (!hideHomeCheckbox) console.error('hideHome checkbox not found!');
+  if (!hideShortsCheckbox) console.error('hideShorts checkbox not found!');
 
-  // Load saved settings from chrome.storage
+  // Load saved settings from chrome.storage.sync
   chrome.storage.sync.get({
     hideHome: false,
     hideShorts: true,
     hideRecommendations: false,
     hideComments: false,
     hideNotifications: false,
-    hideSidebar: false
+    hideSidebar: false,
+    timerHours: '01',
+    timerMinutes: '30'
   }, function(items) {
-    if (chrome.runtime.lastError) {
-      console.error('Storage error:', chrome.runtime.lastError);
-      return;
-    }
+    console.log('Loaded settings:', items);
+    
     // Set checkbox states from storage
-    toggles.hideHome.checked = items.hideHome;
-    toggles.hideShorts.checked = items.hideShorts;
-    toggles.hideRecommendations.checked = items.hideRecommendations;
-    toggles.hideComments.checked = items.hideComments;
-    toggles.hideNotifications.checked = items.hideNotifications;
-    toggles.hideSidebar.checked = items.hideSidebar;
+    if (hideHomeCheckbox) hideHomeCheckbox.checked = items.hideHome;
+    if (hideShortsCheckbox) hideShortsCheckbox.checked = items.hideShorts;
+    if (hideRecommendationsCheckbox) hideRecommendationsCheckbox.checked = items.hideRecommendations;
+    if (hideCommentsCheckbox) hideCommentsCheckbox.checked = items.hideComments;
+    if (hideNotificationsCheckbox) hideNotificationsCheckbox.checked = items.hideNotifications;
+    if (hideSidebarCheckbox) hideSidebarCheckbox.checked = items.hideSidebar;
+    
+    // Set timer values
+    if (timerHoursInput) timerHoursInput.value = items.timerHours;
+    if (timerMinutesInput) timerMinutesInput.value = items.timerMinutes;
   });
 
-  // Save settings when toggles change
-  Object.keys(toggles).forEach(key => {
-    toggles[key].addEventListener('change', function() {
-      const settings = {};
-      settings[key] = this.checked;
+  // Function to save a setting and notify content script
+  function saveSetting(key, value) {
+    const settings = {};
+    settings[key] = value;
+    
+    console.log('Saving setting:', key, '=', value);
+    
+    // Save to chrome.storage
+    chrome.storage.sync.set(settings, function() {
+      console.log(`${key} saved as ${value}`);
+    });
 
-      // Save to chrome.storage
-      chrome.storage.sync.set(settings, function() {
-        if (chrome.runtime.lastError) {
-          console.error('Storage error:', chrome.runtime.lastError);
-        } else {
-          console.log(`${key} set to ${settings[key]}`);
-        }
-      });
-
-      // Send message to content script to apply changes immediately
-      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        if (chrome.runtime.lastError) {
-          console.error('Tabs error:', chrome.runtime.lastError);
-          return;
-        }
-        if (tabs[0]) {
-          chrome.tabs.sendMessage(tabs[0].id, {
-            action: 'updateSettings',
-            settings: settings
-          });
-        }
+    // Send message to content script in all YouTube tabs
+    chrome.tabs.query({url: 'https://www.youtube.com/*'}, function(tabs) {
+      console.log('Found YouTube tabs:', tabs.length);
+      tabs.forEach(tab => {
+        chrome.tabs.sendMessage(tab.id, {
+          action: 'updateSettings',
+          settings: settings
+        }, function(response) {
+          if (chrome.runtime.lastError) {
+            console.log('Could not send message:', chrome.runtime.lastError.message);
+          }
+        });
       });
     });
-  });
+  }
+
+  // Add event listeners to all checkboxes
+  if (hideHomeCheckbox) {
+    hideHomeCheckbox.addEventListener('change', function() {
+      saveSetting('hideHome', this.checked);
+    });
+  }
+
+  if (hideShortsCheckbox) {
+    hideShortsCheckbox.addEventListener('change', function() {
+      saveSetting('hideShorts', this.checked);
+    });
+  }
+
+  if (hideRecommendationsCheckbox) {
+    hideRecommendationsCheckbox.addEventListener('change', function() {
+      saveSetting('hideRecommendations', this.checked);
+    });
+  }
+
+  if (hideCommentsCheckbox) {
+    hideCommentsCheckbox.addEventListener('change', function() {
+      saveSetting('hideComments', this.checked);
+    });
+  }
+
+  if (hideNotificationsCheckbox) {
+    hideNotificationsCheckbox.addEventListener('change', function() {
+      saveSetting('hideNotifications', this.checked);
+    });
+  }
+
+  if (hideSidebarCheckbox) {
+    hideSidebarCheckbox.addEventListener('change', function() {
+      saveSetting('hideSidebar', this.checked);
+    });
+  }
 
   // Timer overlay handlers
-  setTimerBtn.addEventListener('click', () => {
-    timerOverlay.classList.add('active');
-  });
+  if (setTimerBtn) {
+    setTimerBtn.addEventListener('click', () => {
+      console.log('Set timer clicked');
+      if (timerOverlay) {
+        timerOverlay.classList.add('active');
+      }
+    });
+  }
 
-  closeTimerBtn.addEventListener('click', () => {
-    timerOverlay.classList.remove('active');
-  });
-
-  timerOverlay.addEventListener('click', (e) => {
-    if (e.target === timerOverlay) {
-      timerOverlay.classList.remove('active');
-    }
-  });
-
-  applyTimerBtn.addEventListener('click', () => {
-    const hours = document.getElementById('timerHours').value;
-    const minutes = document.getElementById('timerMinutes').value;
-
-    chrome.storage.sync.set({
-      timerHours: hours,
-      timerMinutes: minutes
-    }, function() {
-      if (chrome.runtime.lastError) {
-        console.error('Storage error:', chrome.runtime.lastError);
-      } else {
-        console.log(`Timer set: ${hours}h ${minutes}m`);
+  if (closeTimerBtn) {
+    closeTimerBtn.addEventListener('click', () => {
+      console.log('Close timer clicked');
+      if (timerOverlay) {
         timerOverlay.classList.remove('active');
       }
     });
-  });
+  }
+
+  if (timerOverlay) {
+    timerOverlay.addEventListener('click', (e) => {
+      if (e.target === timerOverlay) {
+        timerOverlay.classList.remove('active');
+      }
+    });
+  }
+
+  if (applyTimerBtn) {
+    applyTimerBtn.addEventListener('click', () => {
+      const hours = timerHoursInput ? timerHoursInput.value : '01';
+      const minutes = timerMinutesInput ? timerMinutesInput.value : '30';
+      
+      console.log(`Applying timer: ${hours}h ${minutes}m`);
+      
+      chrome.storage.sync.set({
+        timerHours: hours,
+        timerMinutes: minutes
+      }, function() {
+        console.log(`Timer set: ${hours}h ${minutes}m`);
+        if (timerOverlay) {
+          timerOverlay.classList.remove('active');
+        }
+      });
+    });
+  }
+
+  console.log('Popup.js initialization complete');
 });

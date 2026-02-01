@@ -1,23 +1,31 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const setTimerBtn = document.getElementById('setTimerBtn');
-    const timerOverlay = document.getElementById('timerOverlay');
-    const closeTimerBtn = document.getElementById('closeTimerBtn');
+document.addEventListener('DOMContentLoaded', function() {
+  const setTimerBtn = document.getElementById('setTimerBtn');
+  const timerOverlay = document.getElementById('timerOverlay');
+  const closeTimerBtn = document.getElementById('closeTimerBtn');
+  const applyTimerBtn = document.getElementById('applyTimerBtn');
 
-    if (setTimerBtn && timerOverlay) {
-        setTimerBtn.addEventListener('click', () => {
-            timerOverlay.classList.remove('translate-y-full', 'opacity-0');
-        });
+  // Open timer overlay
+  setTimerBtn.addEventListener('click', () => {
+    timerOverlay.classList.add('active');
+  });
+
+  // Close timer overlay
+  closeTimerBtn.addEventListener('click', () => {
+    timerOverlay.classList.remove('active');
+  });
+
+  // Close on background click
+  timerOverlay.addEventListener('click', (e) => {
+    if (e.target === timerOverlay) {
+      timerOverlay.classList.remove('active');
     }
-    if (closeTimerBtn && timerOverlay) {
-        closeTimerBtn.addEventListener('click', () => {
-            timerOverlay.classList.add('translate-y-full', 'opacity-0');
-        });
-    }
-    if (timerOverlay) {
-        timerOverlay.addEventListener('click', (e) => {
-            if (e.target === timerOverlay) {
-                timerOverlay.classList.add('translate-y-full', 'opacity-0');
-            }
-        });
-    }
+  });
+
+  // Apply timer (placeholder)
+  applyTimerBtn.addEventListener('click', () => {
+    const hours = document.getElementById('timerHours').value;
+    const minutes = document.getElementById('timerMinutes').value;
+    console.log(`Timer set: ${hours}h ${minutes}m`);
+    timerOverlay.classList.remove('active');
+  });
 });

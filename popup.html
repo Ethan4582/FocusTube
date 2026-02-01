@@ -1,153 +1,162 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>YouTube Manager Extension</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>YouTube Manager Extension</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 p-4 transition-colors duration-300">
-<div class="relative overflow-hidden h-full">
-<header class="flex items-center justify-between mb-8 px-2">
-<div class="flex items-center gap-2">
-<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-red-900/20">
-<span class="material-icons-round text-white text-2xl">play_arrow</span>
-</div>
-<div>
-<h1 class="text-lg font-bold tracking-tight">YouTube Manager</h1>
-<p class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">Focus Mode</p>
-</div>
-</div>
-<button class="p-2 hover:bg-slate-200 dark:hover:bg-white/10 rounded-full transition-colors">
-<span class="material-icons-round text-slate-400">settings</span>
-</button>
-</header>
-<main class="space-y-3">
-<div class="glass-card rounded-2xl p-3 flex items-center justify-between group transition-all hover:border-white/20">
-<div class="flex items-center gap-3">
-<span class="material-icons-round text-slate-400 group-hover:text-primary transition-colors">home</span>
-<span class="font-medium text-sm">Hide Home Videos</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" type="checkbox"/>
-<div class="slider-container w-24 h-8 bg-slate-200 dark:bg-white/10 rounded-full p-1 transition-all duration-300 flex items-center peer-checked:bg-primary/90 peer-checked:glow-red">
-<div class="slider-handle w-6 h-6 bg-white dark:bg-slate-200 rounded-full flex items-center justify-center shadow-sm z-10 transition-all">
-<span class="material-icons-round text-xs text-primary">keyboard_double_arrow_right</span>
-</div>
-<span class="slider-text absolute right-3 text-[9px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 transition-all">Slide</span>
-</div>
-</label>
-</div>
-<div class="glass-card rounded-2xl p-3 flex items-center justify-between group transition-all hover:border-white/20">
-<div class="flex items-center gap-3">
-<span class="material-icons-round text-slate-400 group-hover:text-primary transition-colors">bolt</span>
-<span class="font-medium text-sm">Hide Shorts</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only peer" type="checkbox"/>
-<div class="slider-container w-24 h-8 bg-slate-200 dark:bg-white/10 rounded-full p-1 transition-all duration-300 flex items-center peer-checked:bg-primary/90 peer-checked:glow-red">
-<div class="slider-handle w-6 h-6 bg-white dark:bg-slate-200 rounded-full flex items-center justify-center shadow-sm z-10 transition-all">
-<span class="material-icons-round text-xs text-primary">keyboard_double_arrow_right</span>
-</div>
-<span class="slider-text absolute right-3 text-[9px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 transition-all">Slide</span>
-</div>
-</label>
-</div>
-<div class="glass-card rounded-2xl p-3 flex items-center justify-between group transition-all hover:border-white/20">
-<div class="flex items-center gap-3">
-<span class="material-icons-round text-slate-400 group-hover:text-primary transition-colors">recommend</span>
-<span class="font-medium text-sm">Hide Recommendations</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" type="checkbox"/>
-<div class="slider-container w-24 h-8 bg-slate-200 dark:bg-white/10 rounded-full p-1 transition-all duration-300 flex items-center peer-checked:bg-primary/90 peer-checked:glow-red">
-<div class="slider-handle w-6 h-6 bg-white dark:bg-slate-200 rounded-full flex items-center justify-center shadow-sm z-10 transition-all">
-<span class="material-icons-round text-xs text-primary">keyboard_double_arrow_right</span>
-</div>
-<span class="slider-text absolute right-3 text-[9px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 transition-all">Slide</span>
-</div>
-</label>
-</div>
-<div class="glass-card rounded-2xl p-3 flex items-center justify-between group transition-all hover:border-white/20">
-<div class="flex items-center gap-3">
-<span class="material-icons-round text-slate-400 group-hover:text-primary transition-colors">chat_bubble_outline</span>
-<span class="font-medium text-sm">Hide Comments</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" type="checkbox"/>
-<div class="slider-container w-24 h-8 bg-slate-200 dark:bg-white/10 rounded-full p-1 transition-all duration-300 flex items-center peer-checked:bg-primary/90 peer-checked:glow-red">
-<div class="slider-handle w-6 h-6 bg-white dark:bg-slate-200 rounded-full flex items-center justify-center shadow-sm z-10 transition-all">
-<span class="material-icons-round text-xs text-primary">keyboard_double_arrow_right</span>
-</div>
-<span class="slider-text absolute right-3 text-[9px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 transition-all">Slide</span>
-</div>
-</label>
-</div>
-<div class="glass-card rounded-2xl p-3 flex items-center justify-between group transition-all hover:border-white/20">
-<div class="flex items-center gap-3">
-<span class="material-icons-round text-slate-400 group-hover:text-primary transition-colors">notifications_off</span>
-<span class="font-medium text-sm">Hide Notifications</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only peer" type="checkbox"/>
-<div class="slider-container w-24 h-8 bg-slate-200 dark:bg-white/10 rounded-full p-1 transition-all duration-300 flex items-center peer-checked:bg-primary/90 peer-checked:glow-red">
-<div class="slider-handle w-6 h-6 bg-white dark:bg-slate-200 rounded-full flex items-center justify-center shadow-sm z-10 transition-all">
-<span class="material-icons-round text-xs text-primary">keyboard_double_arrow_right</span>
-</div>
-<span class="slider-text absolute right-3 text-[9px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 transition-all">Slide</span>
-</div>
-</label>
-</div>
-<div class="glass-card rounded-2xl p-3 flex items-center justify-between group transition-all hover:border-white/20">
-<div class="flex items-center gap-3">
-<span class="material-icons-round text-slate-400 group-hover:text-primary transition-colors">view_sidebar</span>
-<span class="font-medium text-sm">Hide Sidebar</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" type="checkbox"/>
-<div class="slider-container w-24 h-8 bg-slate-200 dark:bg-white/10 rounded-full p-1 transition-all duration-300 flex items-center peer-checked:bg-primary/90 peer-checked:glow-red">
-<div class="slider-handle w-6 h-6 bg-white dark:bg-slate-200 rounded-full flex items-center justify-center shadow-sm z-10 transition-all">
-<span class="material-icons-round text-xs text-primary">keyboard_double_arrow_right</span>
-</div>
-<span class="slider-text absolute right-3 text-[9px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 transition-all">Slide</span>
-</div>
-</label>
-</div>
-</main>
-<footer class="mt-8 flex gap-3">
-<button class="flex-1 py-3 px-4 glass-card rounded-2xl font-semibold text-xs text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white transition-all uppercase tracking-widest border border-transparent active:scale-95">
-                Default Setting
-            </button>
-<button class="flex-1 py-3 px-4 bg-primary text-white rounded-2xl font-bold text-xs uppercase tracking-widest shadow-lg shadow-red-900/30 hover:bg-red-600 transition-all active:scale-95 flex items-center justify-center gap-2" id="setTimerBtn">
-<span class="material-icons-round text-sm">timer</span>
-                Set Timer
-            </button>
-</footer>
-<div class="fixed inset-0 bg-black/60 backdrop-blur-md z-20 flex items-end justify-center transition-all duration-300 translate-y-full opacity-0" id="timerOverlay">
-<div class="w-full glass-card border-b-0 rounded-t-3xl p-6 pb-10">
-<div class="w-12 h-1 bg-white/20 rounded-full mx-auto mb-6"></div>
-<h3 class="text-center font-bold text-lg mb-6">Usage Limit</h3>
-<div class="flex justify-center items-end gap-4 mb-8">
-<div class="text-center">
-<input class="w-16 h-16 bg-white/10 border-0 rounded-2xl text-center text-2xl font-bold text-primary focus:ring-2 focus:ring-primary" max="23" min="0" type="number" value="01"/>
-<p class="text-[10px] uppercase font-bold text-slate-500 mt-2">Hours</p>
-</div>
-<span class="text-2xl font-bold mb-8">:</span>
-<div class="text-center">
-<input class="w-16 h-16 bg-white/10 border-0 rounded-2xl text-center text-2xl font-bold text-primary focus:ring-2 focus:ring-primary" max="59" min="0" type="number" value="30"/>
-<p class="text-[10px] uppercase font-bold text-slate-500 mt-2">Minutes</p>
-</div>
-</div>
-<div class="flex gap-3">
-<button class="flex-1 py-4 glass-card rounded-2xl font-bold text-xs uppercase tracking-widest text-slate-400" id="closeTimerBtn">Cancel</button>
-<button class="flex-1 py-4 bg-primary text-white rounded-2xl font-bold text-xs uppercase tracking-widest shadow-xl">Apply</button>
-</div>
-</div>
-</div>
-</div>
-<script src="popup.js"></script>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header>
+      <div class="header-left">
+        <div class="logo-icon">
+          <span class="material-icons-round">play_arrow</span>
+        </div>
+        <div class="header-text">
+          <h1>YouTube Manager</h1>
+          <p>FOCUS MODE</p>
+        </div>
+      </div>
+      <button class="settings-btn">
+        <span class="material-icons-round">settings</span>
+      </button>
+    </header>
+
+    <!-- Toggle Cards -->
+    <main>
+      <div class="toggle-card">
+        <div class="toggle-label">
+          <span class="material-icons-round">home</span>
+          <span>Hide Home Videos</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="hideHome"/>
+          <span class="slider">
+            <span class="slider-handle">
+              <span class="material-icons-round">keyboard_double_arrow_right</span>
+            </span>
+            <span class="slider-text">SLIDE</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="toggle-card">
+        <div class="toggle-label">
+          <span class="material-icons-round">bolt</span>
+          <span>Hide Shorts</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="hideShorts" checked/>
+          <span class="slider">
+            <span class="slider-handle">
+              <span class="material-icons-round">keyboard_double_arrow_right</span>
+            </span>
+            <span class="slider-text">SLIDE</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="toggle-card">
+        <div class="toggle-label">
+          <span class="material-icons-round">recommend</span>
+          <span>Hide Recommendations</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="hideRecommendations"/>
+          <span class="slider">
+            <span class="slider-handle">
+              <span class="material-icons-round">keyboard_double_arrow_right</span>
+            </span>
+            <span class="slider-text">SLIDE</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="toggle-card">
+        <div class="toggle-label">
+          <span class="material-icons-round">chat_bubble_outline</span>
+          <span>Hide Comments</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="hideComments"/>
+          <span class="slider">
+            <span class="slider-handle">
+              <span class="material-icons-round">keyboard_double_arrow_right</span>
+            </span>
+            <span class="slider-text">SLIDE</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="toggle-card">
+        <div class="toggle-label">
+          <span class="material-icons-round">notifications_off</span>
+          <span>Hide Notifications</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="hideNotifications" checked/>
+          <span class="slider">
+            <span class="slider-handle">
+              <span class="material-icons-round">keyboard_double_arrow_right</span>
+            </span>
+            <span class="slider-text">SLIDE</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="toggle-card">
+        <div class="toggle-label">
+          <span class="material-icons-round">view_sidebar</span>
+          <span>Hide Sidebar</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="hideSidebar"/>
+          <span class="slider">
+            <span class="slider-handle">
+              <span class="material-icons-round">keyboard_double_arrow_right</span>
+            </span>
+            <span class="slider-text">SLIDE</span>
+          </span>
+        </label>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <button class="btn-secondary">DEFAULT SETTING</button>
+      <button class="btn-primary" id="setTimerBtn">
+        <span class="material-icons-round">timer</span>
+        SET TIMER
+      </button>
+    </footer>
+
+    <!-- Timer Overlay -->
+    <div class="timer-overlay" id="timerOverlay">
+      <div class="timer-sheet">
+        <div class="timer-handle"></div>
+        <h3>Usage Limit</h3>
+        <div class="timer-inputs">
+          <div class="timer-input-group">
+            <input type="number" min="0" max="23" value="01" id="timerHours"/>
+            <span>Hours</span>
+          </div>
+          <span class="timer-colon">:</span>
+          <div class="timer-input-group">
+            <input type="number" min="0" max="59" value="30" id="timerMinutes"/>
+            <span>Minutes</span>
+          </div>
+        </div>
+        <div class="timer-actions">
+          <button class="btn-secondary" id="closeTimerBtn">Cancel</button>
+          <button class="btn-primary" id="applyTimerBtn">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
 </body>
 </html>

@@ -1,66 +1,13 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
+<html class="dark" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>YouTube Manager Extension</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
-<script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#FF0000",
-              "background-light": "#F9FAFB",
-              "background-dark": "#0A0A0A",
-              "glass-dark": "rgba(255, 255, 255, 0.05)",
-              "glass-border": "rgba(255, 255, 255, 0.1)",
-            },
-            fontFamily: {
-              display: ["Inter", "sans-serif"],
-            },
-            borderRadius: {
-              DEFAULT: "12px",
-            },
-          },
-        },
-      };
-    </script>
-<style>
-        body {
-            font-family: 'Inter', sans-serif;
-            width: 380px;
-            min-height: 520px;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .dark .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-        }
-        .toggle-track {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glow-red {
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.25);
-        }.slider-handle {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        input:checked + .slider-container .slider-handle {
-            transform: translateX(64px);
-        }
-        input:checked + .slider-container {
-            background-color: #FF0000;
-        }
-        input:checked + .slider-container .slider-text {
-            color: white;
-            opacity: 0.9;
-        }
-    </style>
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 p-4 transition-colors duration-300">
 <div class="relative overflow-hidden h-full">
@@ -201,22 +148,6 @@
 </div>
 </div>
 </div>
-<script>
-        const setTimerBtn = document.getElementById('setTimerBtn');
-        const timerOverlay = document.getElementById('timerOverlay');
-        const closeTimerBtn = document.getElementById('closeTimerBtn');
-        setTimerBtn.addEventListener('click', () => {
-            timerOverlay.classList.remove('translate-y-full', 'opacity-0');
-        });
-        closeTimerBtn.addEventListener('click', () => {
-            timerOverlay.classList.add('translate-y-full', 'opacity-0');
-        });
-        // Close when clicking outside the timer card
-        timerOverlay.addEventListener('click', (e) => {
-            if (e.target === timerOverlay) {
-                timerOverlay.classList.add('translate-y-full', 'opacity-0');
-            }
-        });
-    </script>
-
-</body></html>
+<script src="popup.js"></script>
+</body>
+</html>

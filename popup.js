@@ -1,7 +1,7 @@
 // popup.js - Handles UI interactions and saves settings to chrome.storage
 
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('Popup loaded');
+  // console.log('Popup loaded');
 
   // Get all toggle checkboxes
   const hideHomeCheckbox = document.getElementById('hideHome');
@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const timerHoursInput = document.getElementById('timerHours');
   const timerMinutesInput = document.getElementById('timerMinutes');
 
-  // Check if elements exist
+
+  const defaultSettingBtn = document.querySelector('.btn-secondary');
+
   if (!hideHomeCheckbox) console.error('hideHome checkbox not found!');
   if (!hideShortsCheckbox) console.error('hideShorts checkbox not found!');
 
@@ -34,9 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
     timerHours: '01',
     timerMinutes: '30'
   }, function(items) {
-    console.log('Loaded settings:', items);
+    // console.log('Loaded settings:', items);
     
-    // Set checkbox states from storage
+
     if (hideHomeCheckbox) hideHomeCheckbox.checked = items.hideHome;
     if (hideShortsCheckbox) hideShortsCheckbox.checked = items.hideShorts;
     if (hideRecommendationsCheckbox) hideRecommendationsCheckbox.checked = items.hideRecommendations;
@@ -54,16 +56,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const settings = {};
     settings[key] = value;
     
-    console.log('Saving setting:', key, '=', value);
+    // console.log('Saving setting:', key, '=', value);
     
     // Save to chrome.storage
     chrome.storage.sync.set(settings, function() {
       console.log(`${key} saved as ${value}`);
     });
 
-    // Send message to content script in all YouTube tabs
     chrome.tabs.query({url: 'https://www.youtube.com/*'}, function(tabs) {
-      console.log('Found YouTube tabs:', tabs.length);
+      // console.log('Found YouTube tabs:', tabs.length);
       tabs.forEach(tab => {
         chrome.tabs.sendMessage(tab.id, {
           action: 'updateSettings',
@@ -143,10 +144,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (applyTimerBtn) {
     applyTimerBtn.addEventListener('click', () => {
-      const hours = timerHoursInput ? timerHoursInput.value : '01';
+      const hours = timerHoursInput ? timerHoursInput.value : '00';
       const minutes = timerMinutesInput ? timerMinutesInput.value : '30';
       
-      console.log(`Applying timer: ${hours}h ${minutes}m`);
+      // console.log(`Applying timer: ${hours}h ${minutes}m`);
       
       chrome.storage.sync.set({
         timerHours: hours,
@@ -160,5 +161,43 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  console.log('Popup.js initialization complete');
+  defaultSettingBtn.addEventListener('click', function() {
+    // Set all toggles to false
+    Object.keys(toggles).forEach(key => {
+      toggles[key].checked = false;
+    });
+
+    // Save all settings as false in chrome.storage
+    chrome.storage.sync.set({
+      hideHome: false,
+      hideShorts: false,
+      hideRecommendations: false,
+      hideComments: false,
+      hideNotifications: false,
+      hideSidebar: false
+    }, function() {
+      if (chrome.runtime.lastError) {
+        console.error('Storage error:', chrome.runtime.lastError);
+      } else {
+        // Notify content script to update
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+          if (tabs[0]) {
+            chrome.tabs.sendMessage(tabs[0].id, {
+              action: 'updateSettings',
+              settings: {
+                hideHome: false,
+                hideShorts: false,
+                hideRecommendations: false,
+                hideComments: false,
+                hideNotifications: false,
+                hideSidebar: false
+              }
+            });
+          }
+        });
+      }
+    });
+  });
+
+  
 });

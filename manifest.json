@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "LinkedIn Profile Extractor",
+  "name": " YouTube manager",
   "version": "1.0",
   "description": "A focus-mode YouTube manager that hides shorts, recommendations, comments, and more  ",
   "permissions": [
@@ -9,7 +9,7 @@
     "scripting"
   ],
   "host_permissions": [
-    "https://www.linkedin.com/*"
+    "https://www.youtube.com/*"
   ],
   "action": {
     "default_popup": "popup.html",

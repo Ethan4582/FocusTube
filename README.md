@@ -2,7 +2,7 @@
 YouTube's algorithm wants your time. This extension gives it back. Reclaim hours of your day and stay focused on what actually matters.
 
 ## Demo Video
-[![Demo Video](image.png)](https://www.youtube.com/watch?v=your-demo-video)
+[![Demo Video](icons/image.png)](https://www.youtube.com/watch?v=your-demo-video)
 
 ## What It Does
 - **Hides the homepage** so you search without getting sucked into recommendations

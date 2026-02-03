@@ -24,6 +24,14 @@ This is version 1.0. More focus features coming soon because your attention is y
 
 ---
 
+## ☕ Support the Creator
+
+If you find this extension useful, consider supporting us!  
+Your contribution will help us publish this extension on the Chrome Web Store.
+
+[![Buy Me a Coffee](icons/coffee.png)](https://buymeacoffee.com/ashirwad05) [Buy Me a Coffee](https://buymeacoffee.com/ashirwad05)
+
+
 **Pro tip:** Combine with website blockers during deep work. Your productivity will skyrocket. 🚀
 
 ## License

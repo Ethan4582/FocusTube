@@ -72,9 +72,7 @@ header {
   transition: background 0.2s;
 }
 
-.settings-btn:hover {
-  background: rgba(255,255,255,0.1);
-}
+
 
 .settings-btn .material-icons-round {
   color: #888;

@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const hours = timerHoursInput ? timerHoursInput.value : '00';
       const minutes = timerMinutesInput ? timerMinutesInput.value : '30';
       
-      // console.log(`Applying timer: ${hours}h ${minutes}m`);
+     
       
       chrome.storage.sync.set({
         timerHours: hours,
@@ -163,9 +163,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   defaultSettingBtn.addEventListener('click', function() {
     // Set all toggles to false
-    Object.keys(toggles).forEach(key => {
-      toggles[key].checked = false;
-    });
+    if (hideHomeCheckbox) hideHomeCheckbox.checked = false;
+    if (hideShortsCheckbox) hideShortsCheckbox.checked = false;
+    if (hideRecommendationsCheckbox) hideRecommendationsCheckbox.checked = false;
+    if (hideCommentsCheckbox) hideCommentsCheckbox.checked = false;
+    if (hideNotificationsCheckbox) hideNotificationsCheckbox.checked = false;
+    if (hideSidebarCheckbox) hideSidebarCheckbox.checked = false;
 
     // Save all settings as false in chrome.storage
     chrome.storage.sync.set({

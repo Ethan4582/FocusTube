@@ -79,7 +79,7 @@ async function checkTimers() {
 }
 
 function notifyTabs(action, data) {
-  chrome.tabs.query({ url: "*://*.x.com/*" }, (tabs) => {
+  chrome.tabs.query({ url: ["*://*.x.com/*", "*://*.twitter.com/*"] }, (tabs) => {
     for (let tab of tabs) {
       chrome.tabs.sendMessage(tab.id, { action, ...data }).catch(() => {});
     }
@@ -98,13 +98,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   } else if (request.action === 'getSessionState') {
     sendResponse({ state: currentState, sessionStartedAt, lockStartedAt });
   } else if (request.action === 'xSettingsUpdated') {
-    // If user disables x mode, clear timers
     if (request.settings.xEnabled === false) {
       currentState = 'idle';
       sessionStartedAt = null;
       lockStartedAt = null;
       saveState();
       notifyTabs('sessionUpdate', { state: currentState });
+    } else {
+      notifyTabs('xSettingsUpdated', request.settings);
     }
     sendResponse({ success: true });
   }

@@ -35,6 +35,8 @@
       handleState({ state: CONSTANTS.STATE.LOCKED, lockStartedAt: request.lockStartedAt });
     } else if (request.action === 'lockExpired') {
       handleState({ state: request.state });
+    } else if (request.action === 'xSettingsUpdated') {
+      checkCurrentPage();
     }
   });
 

@@ -5,13 +5,13 @@
   let currentSettings = await XStorage.getSettings();
 
   async function handleState(stateData) {
-    if (stateData.state === CONSTANTS.STATE.LOCKED) {
-      if (Utils.isBlockedPage(window.location.href, currentSettings)) {
-        XLockScreen.inject();
-        
-        // Calculate durations
+    if (Utils.isBlockedPage(window.location.href, currentSettings)) {
+      if (stateData.state === CONSTANTS.STATE.LOCKED) {
         const blockDurationMs = (currentSettings.xBlockDuration || 60) * 60 * 1000;
-        XLockScreen.startCountdown(stateData.lockStartedAt, blockDurationMs);
+        XLockScreen.injectLocked(stateData.lockStartedAt, blockDurationMs);
+      } else if (stateData.state === CONSTANTS.STATE.IDLE) {
+        const browseDurationMins = currentSettings.xBrowseDuration || 20;
+        XLockScreen.injectIdle(browseDurationMins);
       } else {
         XLockScreen.remove();
       }
@@ -26,7 +26,8 @@
     handleState(stateData);
   }
 
-  // Listen for background updates
+  window.focusxRecheck = checkCurrentPage;
+
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'sessionUpdate') {
       handleState({ state: request.state });
@@ -37,7 +38,6 @@
     }
   });
 
-  // Observe SPA Navigation
   let lastUrl = location.href;
   new MutationObserver(() => {
     const url = location.href;
@@ -49,6 +49,5 @@
 
   window.addEventListener('popstate', checkCurrentPage);
   
-  // Initial check
   checkCurrentPage();
 })();

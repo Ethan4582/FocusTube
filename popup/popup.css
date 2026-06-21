@@ -189,6 +189,10 @@ main {
   left: 10px;
 }
 
+.toggle input:checked + .slider.short-slider .slider-handle {
+  transform: translateX(20px);
+}
+
 /* Footer */
 footer {
   display: flex;

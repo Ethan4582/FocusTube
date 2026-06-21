@@ -5,13 +5,7 @@ const XTimer = {
     if (!settings.xEnabled) return { state: CONSTANTS.STATE.IDLE };
     
     if (Utils.isBlockedPage(window.location.href, settings)) {
-      const state = await XStorage.getSessionState();
-      
-      if (state.state === CONSTANTS.STATE.IDLE) {
-        // Start a new session
-        return await XStorage.startSession();
-      }
-      return state;
+      return await XStorage.getSessionState();
     }
     return { state: CONSTANTS.STATE.IDLE };
   }

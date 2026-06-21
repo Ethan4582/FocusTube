@@ -3,12 +3,53 @@ const XLockScreen = {
   element: null,
   timerInterval: null,
   
-  inject: function() {
-    if (this.element) return;
-    
+  remove: function() {
+    if (this.element) {
+      this.element.remove();
+      this.element = null;
+      document.body.style.overflow = '';
+    }
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+      this.timerInterval = null;
+    }
+  },
+
+  injectBase: function() {
+    if (this.element) this.remove();
     this.element = document.createElement('div');
     this.element.id = 'focusx-lock-screen';
-    
+    document.documentElement.appendChild(this.element);
+    document.body.style.overflow = 'hidden';
+  },
+  
+  injectIdle: function(browseDurationMins) {
+    this.injectBase();
+    this.element.innerHTML = `
+      <div class="fx-container">
+        <div class="fx-title">Timeline Locked</div>
+        <div class="fx-subtitle">Ready to browse?</div>
+        
+        <div class="fx-actions" style="margin-bottom: 30px;">
+          <button id="fx-start-session" class="fx-btn fx-btn-primary" style="font-size: 18px; padding: 16px 32px;">Start Surfing (${browseDurationMins}m)</button>
+        </div>
+        
+        <div class="fx-actions">
+          <a href="/messages" class="fx-btn">DMs</a>
+          <a href="/notifications" class="fx-btn">Notifications</a>
+          <a href="/compose/post" class="fx-btn">Post</a>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('fx-start-session').addEventListener('click', async () => {
+      await XStorage.startSession();
+      if (window.focusxRecheck) window.focusxRecheck();
+    });
+  },
+
+  injectLocked: function(lockStartedAt, blockDurationMs) {
+    this.injectBase();
     this.element.innerHTML = `
       <div class="fx-container">
         <div class="fx-title">Timeline Locked</div>
@@ -25,25 +66,6 @@ const XLockScreen = {
       </div>
     `;
     
-    document.documentElement.appendChild(this.element);
-    document.body.style.overflow = 'hidden';
-  },
-  
-  remove: function() {
-    if (this.element) {
-      this.element.remove();
-      this.element = null;
-      document.body.style.overflow = '';
-    }
-    if (this.timerInterval) {
-      clearInterval(this.timerInterval);
-      this.timerInterval = null;
-    }
-  },
-  
-  startCountdown: function(lockStartedAt, blockDurationMs) {
-    if (!this.element) this.inject();
-    
     const updateTimer = () => {
       const now = Date.now();
       const elapsed = now - lockStartedAt;
@@ -52,7 +74,7 @@ const XLockScreen = {
       if (remaining <= 0) {
         clearInterval(this.timerInterval);
         document.getElementById('fx-countdown').textContent = "0s";
-        // It will be removed by content script state sync
+        if (window.focusxRecheck) window.focusxRecheck();
       } else {
         document.getElementById('fx-countdown').textContent = Utils.formatTime(remaining);
       }

@@ -17,70 +17,68 @@
 
 #focusx-lock-screen .fx-container {
   text-align: center;
-  max-width: 400px;
+  max-width: 600px;
   padding: 40px;
-  background: #15181c;
-  border-radius: 16px;
-  border: 1px solid #2f3336;
+}
+
+#focusx-lock-screen .fx-icon {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
 }
 
 #focusx-lock-screen .fx-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 8px;
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 16px;
   color: #fff;
 }
 
 #focusx-lock-screen .fx-subtitle {
   font-size: 15px;
-  color: #8899a6;
+  color: #e7e9ea;
   margin-bottom: 32px;
-}
-
-#focusx-lock-screen .fx-timer-label {
-  font-size: 13px;
-  color: #8899a6;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
-
-#focusx-lock-screen .fx-timer {
-  font-size: 48px;
-  font-weight: 700;
-  color: #1DA1F2;
-  margin-bottom: 40px;
-  font-variant-numeric: tabular-nums;
-}
-
-#focusx-lock-screen .fx-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-}
-
-#focusx-lock-screen .fx-btn {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border: none;
-  border-radius: 9999px;
-  padding: 12px 24px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-  text-decoration: none;
-  display: inline-block;
-}
-
-#focusx-lock-screen .fx-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  line-height: 1.5;
 }
 
 #focusx-lock-screen .fx-btn-primary {
   background: #1DA1F2;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  padding: 16px 32px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 48px;
 }
 
 #focusx-lock-screen .fx-btn-primary:hover {
   background: #1a91da;
+}
+
+#focusx-lock-screen .fx-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+#focusx-lock-screen .fx-link {
+  color: #1DA1F2;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+#focusx-lock-screen .fx-link:hover {
+  text-decoration: underline;
+}
+
+#focusx-lock-screen .fx-dot {
+  color: #71767b;
+  font-size: 15px;
 }

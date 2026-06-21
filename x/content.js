@@ -11,7 +11,8 @@
         XLockScreen.injectLocked(stateData.lockStartedAt, blockDurationMs);
       } else if (stateData.state === CONSTANTS.STATE.IDLE) {
         const browseDurationMins = currentSettings.xBrowseDuration || 20;
-        XLockScreen.injectIdle(browseDurationMins);
+        const blockDurationMins = currentSettings.xBlockDuration || 60;
+        XLockScreen.injectIdle(browseDurationMins, blockDurationMins);
       } else {
         XLockScreen.remove();
       }

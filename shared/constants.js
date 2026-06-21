@@ -1,5 +1,5 @@
 // shared/constants.js
-const CONSTANTS = {
+window.CONSTANTS = {
   STATE: {
     IDLE: 'idle',
     BROWSING: 'browsing',

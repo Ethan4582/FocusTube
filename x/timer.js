@@ -1,5 +1,5 @@
 // x/timer.js
-const XTimer = {
+window.XTimer = {
   checkSession: async function() {
     const settings = await XStorage.getSettings();
     if (!settings.xEnabled) return { state: CONSTANTS.STATE.IDLE };

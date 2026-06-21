@@ -1,5 +1,5 @@
 // x/storage.js
-const XStorage = {
+window.XStorage = {
   getSettings: async function() {
     return new Promise((resolve) => {
       chrome.storage.local.get(CONSTANTS.DEFAULT_SETTINGS, resolve);

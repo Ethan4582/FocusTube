@@ -1,5 +1,5 @@
 // shared/utils.js
-const Utils = {
+window.Utils = {
   isBlockedPage: function(url, settings) {
     if (!settings.xEnabled) return false;
     

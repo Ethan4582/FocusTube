@@ -1,5 +1,5 @@
 // x/lock-screen.js
-const XLockScreen = {
+window.XLockScreen = {
   element: null,
   timerInterval: null,
   

@@ -595,3 +595,13 @@ input:checked + .x-mini-slider:before {
   color: #8899a6;
   font-size: 11px;
 }
+
+/* Hide number input spin buttons */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}

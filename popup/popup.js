@@ -209,6 +209,36 @@ document.addEventListener('DOMContentLoaded', function() {
         title.style.color = '#8899a6';
       }
     }
+    
+    const elementsToDisable = [
+      xBrowseTime, xBlockTime, 
+      xBlockHome, xBlockExplore, xBlockSearch, xBlockNotifications
+    ];
+
+    if (!enabled) {
+      if (xBlockHome) xBlockHome.checked = false;
+      if (xBlockExplore) xBlockExplore.checked = false;
+      if (xBlockSearch) xBlockSearch.checked = false;
+      if (xBlockNotifications) xBlockNotifications.checked = false;
+    } else {
+      chrome.storage.local.get(['xBlockHome', 'xBlockExplore', 'xBlockSearch', 'xBlockNotifications'], function(items) {
+        if (xBlockHome && items.xBlockHome !== undefined) xBlockHome.checked = items.xBlockHome;
+        if (xBlockExplore && items.xBlockExplore !== undefined) xBlockExplore.checked = items.xBlockExplore;
+        if (xBlockSearch && items.xBlockSearch !== undefined) xBlockSearch.checked = items.xBlockSearch;
+        if (xBlockNotifications && items.xBlockNotifications !== undefined) xBlockNotifications.checked = items.xBlockNotifications;
+      });
+    }
+    
+    elementsToDisable.forEach(input => {
+      if (input) {
+        input.disabled = !enabled;
+        const card = input.closest('.x-time-card, .x-toggle-card');
+        if (card) {
+          card.style.opacity = enabled ? '1' : '0.4';
+          card.style.pointerEvents = enabled ? 'auto' : 'none';
+        }
+      }
+    });
   }
 
   if (xDisableBtn) {

@@ -1,8 +1,8 @@
 # FocusTube & FocusX - Distraction Free
 Algorithms want your time. This extension gives it back. Reclaim hours of your day and stay focused on YouTube and X (Twitter).
 
-## Demo Video
-[![Demo Video](icons/image.png)](https://youtu.be/eQmb7g5jJtc)
+
+[![Demo Video](icons/image1.png)]()
 
 ## What It Does
 - **Dual Modes:** Toggle instantly between YouTube and X (Twitter) focus managers

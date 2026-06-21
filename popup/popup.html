@@ -188,50 +188,50 @@
       </div>
     </header>
 
-    <div class="x-time-settings">
-      <div class="x-time-card">
-        <div class="x-time-header">
-          <span class="material-icons-round" style="color: #1DA1F2;">schedule</span>
-          <span>Surf Time</span>
+    <div class="x-section-title" style="margin-bottom: 8px;">
+      <h3 style="color: #8899a6; font-size: 11px; font-weight: 600; text-transform: uppercase;">TIME SETTINGS</h3>
+    </div>
+    
+    <div class="x-time-settings-list" style="margin-bottom: 24px; display: flex; flex-direction: column;">
+      <div class="x-toggle-card">
+        <div class="x-toggle-label">
+          <div style="background: rgba(29, 161, 242, 0.15); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+            <span class="material-icons-round" style="color: #1DA1F2; font-size: 18px;">schedule</span>
+          </div>
+          <span style="font-size: 13px;">Surf Time</span>
         </div>
-        <div class="x-time-display">
-          <span class="x-time-number" id="displayBrowseTime">20</span>
-          <span class="x-time-unit">min</span>
-        </div>
-        <p class="x-time-desc">Time you can browse X</p>
-        <div class="x-time-input-wrap">
-          <input type="number" id="xBrowseTime" value="20" min="1" max="999" />
-          <span>min</span>
+        <div class="x-time-input-wrap" style="background: transparent; border: 1px solid #2f3336; padding: 6px 12px; border-radius: 8px; display: flex; align-items: center; width: 85px;">
+          <input type="number" id="xBrowseTime" value="20" min="1" max="999" style="width: 100%; background: transparent; border: none; color: #fff; font-size: 13px; text-align: center; outline: none;" />
+          <span style="color: #8899a6; font-size: 12px; margin-left: 4px;">min</span>
         </div>
       </div>
 
-      <div class="x-time-card">
-        <div class="x-time-header">
-          <span class="material-icons-round" style="color: #1DA1F2;">lock_outline</span>
-          <span>Block Time</span>
+      <div class="x-toggle-card">
+        <div class="x-toggle-label">
+          <div style="background: rgba(29, 161, 242, 0.15); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+            <span class="material-icons-round" style="color: #1DA1F2; font-size: 18px;">lock_outline</span>
+          </div>
+          <span style="font-size: 13px;">Block Time</span>
         </div>
-        <div class="x-time-display">
-          <span class="x-time-number" id="displayBlockTime">60</span>
-          <span class="x-time-unit">min</span>
-        </div>
-        <p class="x-time-desc">Time X stays locked</p>
-        <div class="x-time-input-wrap">
-          <input type="number" id="xBlockTime" value="60" min="1" max="999" />
-          <span>min</span>
+        <div class="x-time-input-wrap" style="background: transparent; border: 1px solid #2f3336; padding: 6px 12px; border-radius: 8px; display: flex; align-items: center; width: 85px;">
+          <input type="number" id="xBlockTime" value="60" min="1" max="999" style="width: 100%; background: transparent; border: none; color: #fff; font-size: 13px; text-align: center; outline: none;" />
+          <span style="color: #8899a6; font-size: 12px; margin-left: 4px;">min</span>
         </div>
       </div>
     </div>
 
     <div class="x-allowed-pages">
       <div class="x-section-title">
-        <h3>ALLOWED PAGES</h3>
+        <h3 style="color: #8899a6; font-size: 11px; font-weight: 600; text-transform: uppercase;">ALLOWED PAGES</h3>
         <p>Choose which pages will be accessible during lock</p>
       </div>
 
       <div class="x-toggle-card">
         <div class="x-toggle-label">
-          <span class="material-icons-round" style="color: #1DA1F2;">home</span>
-          <span>Home Timeline</span>
+          <div style="background: rgba(29, 161, 242, 0.15); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+            <span class="material-icons-round" style="color: #1DA1F2; font-size: 18px;">home</span>
+          </div>
+          <span style="font-size: 13px;">Home Timeline</span>
         </div>
         <label class="x-mini-toggle">
           <input type="checkbox" id="xBlockHome" checked/>
@@ -241,8 +241,10 @@
 
       <div class="x-toggle-card">
         <div class="x-toggle-label">
-          <span class="material-icons-round" style="color: #1DA1F2;">explore</span>
-          <span>Explore</span>
+          <div style="background: rgba(29, 161, 242, 0.15); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+            <span class="material-icons-round" style="color: #1DA1F2; font-size: 18px;">explore</span>
+          </div>
+          <span style="font-size: 13px;">Explore</span>
         </div>
         <label class="x-mini-toggle">
           <input type="checkbox" id="xBlockExplore" checked/>
@@ -252,8 +254,10 @@
 
       <div class="x-toggle-card">
         <div class="x-toggle-label">
-          <span class="material-icons-round" style="color: #1DA1F2;">search</span>
-          <span>Search</span>
+          <div style="background: rgba(29, 161, 242, 0.15); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+            <span class="material-icons-round" style="color: #1DA1F2; font-size: 18px;">search</span>
+          </div>
+          <span style="font-size: 13px;">Search</span>
         </div>
         <label class="x-mini-toggle">
           <input type="checkbox" id="xBlockSearch" checked/>
@@ -263,8 +267,10 @@
 
       <div class="x-toggle-card">
         <div class="x-toggle-label">
-          <span class="material-icons-round" style="color: #1DA1F2;">notifications</span>
-          <span>Notifications</span>
+          <div style="background: rgba(29, 161, 242, 0.15); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+            <span class="material-icons-round" style="color: #1DA1F2; font-size: 18px;">notifications</span>
+          </div>
+          <span style="font-size: 13px;">Notifications</span>
         </div>
         <label class="x-mini-toggle">
           <input type="checkbox" id="xBlockNotifications" checked/>
@@ -273,12 +279,9 @@
       </div>
     </div>
 
-    <button class="x-disable-btn" id="xDisableBtn">
+    <button class="x-disable-btn" id="xDisableBtn" style="justify-content: center;">
       <span class="material-icons-round" style="color: #1DA1F2;">power_settings_new</span>
-      <div class="x-disable-text">
-        <span class="title">Disable FocusX</span>
-        <span class="desc">Turn off all blocking and timers</span>
-      </div>
+      <span class="title" style="color: #1DA1F2; font-size: 14px; font-weight: 600;">Disable FocusX</span>
     </button>
   </div>
 

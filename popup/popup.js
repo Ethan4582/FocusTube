@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
         title.style.color = '#1DA1F2';
       } else {
         title.textContent = 'Enable FocusX';
-        title.style.color = '#8899a6';
+        title.style.color = '#1DA1F2';
       }
     }
     
@@ -232,11 +232,6 @@ document.addEventListener('DOMContentLoaded', function() {
     elementsToDisable.forEach(input => {
       if (input) {
         input.disabled = !enabled;
-        const card = input.closest('.x-time-card, .x-toggle-card');
-        if (card) {
-          card.style.opacity = enabled ? '1' : '0.4';
-          card.style.pointerEvents = enabled ? 'auto' : 'none';
-        }
       }
     });
   }

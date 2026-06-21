@@ -1,0 +1,84 @@
+/* x/lock-screen.css */
+#focusx-lock-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  color: #fff;
+  z-index: 999999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+#focusx-lock-screen .fx-container {
+  text-align: center;
+  max-width: 600px;
+  padding: 40px;
+}
+
+#focusx-lock-screen .fx-icon {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+#focusx-lock-screen .fx-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+#focusx-lock-screen .fx-subtitle {
+  font-size: 15px;
+  color: #e7e9ea;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+#focusx-lock-screen .fx-btn-primary {
+  background: #1DA1F2;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  padding: 16px 32px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 48px;
+}
+
+#focusx-lock-screen .fx-btn-primary:hover {
+  background: #1a91da;
+}
+
+#focusx-lock-screen .fx-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+#focusx-lock-screen .fx-link {
+  color: #1DA1F2;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+#focusx-lock-screen .fx-link:hover {
+  text-decoration: underline;
+}
+
+#focusx-lock-screen .fx-dot {
+  color: #71767b;
+  font-size: 15px;
+}

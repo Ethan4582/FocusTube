@@ -1,18 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Manager",
-  "version": "1.0",
-  "description": "Enhance your YouTube focus by hiding distractions",
+  "name": "FocusTube & FocusX",
+  "version": "1.1",
+  "description": "Enhance your focus by hiding distractions on YouTube and X",
   "permissions": [
     "activeTab",
     "tabs",
     "storage"
   ],
   "host_permissions": [
-    "https://www.youtube.com/*"
+    "https://www.youtube.com/*",
+    "https://x.com/*"
   ],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "popup/popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
@@ -24,11 +25,28 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*"],
-      "css": ["content.css"],
-      "js": ["content.js"],
+      "css": ["youtube/content.css"],
+      "js": ["youtube/content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": ["https://x.com/*"],
+      "css": ["x/lock-screen.css"],
+      "js": [
+        "shared/constants.js",
+        "shared/utils.js",
+        "x/storage.js",
+        "x/timer.js",
+        "x/lock-screen.js",
+        "x/content.js"
+      ],
       "run_at": "document_start",
       "all_frames": false
     }
